@@ -1,7 +1,7 @@
 			-='Coloumber'=-
 		Actively simulation of tf Coloumb's Laws
 
-Che cappero e' Coloumber?
+***    Che cappero e' Coloumber?
 Coloumber è un semplice simulatore delle Leggi di Couloumb (ma va??).
 È scritto in Java, quindi per girare serve il suddetto ambiente (ma
 va??) in un'implementazione decente.
@@ -12,7 +12,7 @@ frequentavo il secondo superiore all'ITIS "E. Fermi" di Lecce.
 L'homepage di questo programma è $home.
 La licenza è un	 CreativeCommons, clausole: BY-ND
 
-
+***    Ma tee...
 Vi siete accorti che la versione è monca? [Siiiii!] [*]
 Vi piacerebbe avere qualche funzionalità in particolare? [Siiiii!]
 Avete qualche idea strampalata e assurda per questo programma? [Siiiii!]
@@ -26,6 +26,45 @@ moneta è va più che bene).
 fuori la risultante ma non mi è mai collato di implementare quella
 funzione. Ad un anno di distanza è tutto ancora lì... Magari un
 giorno... (oggi è il 10-Febbraio-2009).
+
+***    Compilazione da sorgenti:
+
+Insieme ai sorgenti viene rilasciato uno script per ricreare da zero i
+file class del sorgente. Magari un giorno questo script creerà anche i
+jar eseguibili... Ma ora non lo fa.
+Suggerimenti e patch sono ben accetti.
+
+Dunque, lo script è molto semplice, e fa due semplici cose: compila e
+pulisce.
+Compilazione :
+	manu@joker[~/Coloumber]$ ./compile.sh --compile 
+	Compiling...
+ 	manu@joker[~/Coloumber]$
+
+Compilazione *verbosa* :
+(ultile se si sono fatte modifiche al sorgente ma non compila più e
+volete vedere quale sorgente da problemi)
+
+	manu@joker[~/Coloumber]$ ./compile.sh --compile --verbose
+	Compiling sources...
+	=> Compiling Carica.java....
+	=> Compiling ColFrame.java....
+	=> Compiling Coloumb.java....
+	=> Compiling ColoumbPanel.java....
+	=> Compiling Operazioni.java....
+	=> Compiling Tools.java....
+	manu@joker[~/Coloumber]$
+
+Detto questo... Divertitevi a studiare Fisica ;-)
+
+
+***    Note finali
+Hai fatto qualche modifica? Inviamelà e sarò felice di aggregarla al
+ramo principale dei sorgenti se ritengo che la patch sia benefica
+(ovvero che è scritta bene, il codice aggiunto è scritto bene e non
+introduce nuovi bugs), includendo il tuo nome (se vuoi, ovviamente) nel
+file di ringraziamento (che attualmente non esiste, perchè nessuno mi ha
+inviato niente).
 
 
 Copyright 2007-<finoaquandosonovivo> Emanuele Santoro

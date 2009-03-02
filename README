@@ -22,7 +22,7 @@ Tuttavia io il programma lo sviluppo nel mio tempo libero, quindi
 dimostrate riconoscenza (un pasticciotto o una donazione equivalente in
 moneta è va più che bene).
 
-[*] Ehm... Attualmente il programma è monco davvero. Dovrebbe torar
+[*] Ehm... Attualmente il programma è monco davvero. Dovrebbe tirar
 fuori la risultante ma non mi è mai collato di implementare quella
 funzione. Ad un anno di distanza è tutto ancora lì... Magari un
 giorno... (oggi è il 10-Febbraio-2009).
@@ -55,6 +55,10 @@ volete vedere quale sorgente da problemi)
 	=> Compiling Tools.java....
 	manu@joker[~/Coloumber]$
 
+Pulizia :
+	 manu@joker[~/Coloumber]$ ./compile.sh --clean
+(c'era davvero bisogno che lo spiegassi??)
+ 
 Detto questo... Divertitevi a studiare Fisica ;-)
 
 

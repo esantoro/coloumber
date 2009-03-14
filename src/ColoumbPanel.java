@@ -11,62 +11,72 @@ import java.awt.event.* ;
 import java.awt.* ;
 import java.util.ArrayList ;
 
+/**
+ *
+ * \file ColoumbPanel.java
+ * \author Emanuele Santoro \<santoro@autistici.org\>
+ *
+ * Dunque, cominciamo con i commenti:
+ * La classe ColoumbPanel è la classe principale, ed è quella che svolge
+ * la maggior parte del lavoro: si occupa di mantenere all'interno un 
+ * array dinamico in cui salvare le cariche (istanze della classe Carica)
+ * 
+ * Si occupa anche di disegnare sul pannello tutte le cariche sotto forma
+ * di pallini, di disegnare alcune linee che indichino la consistenza della
+ * forza di Couloumb tra le due cariche e di generare le freccette (ok, non 
+ * vi fate ingannare: le freccette sembrano una cazzata da programmare, ma 
+ * hanno preso il loro tempo OK?? TE STA DICU DE SINE!! MOOOOOI M'HAI CHIEDERE
+ * SCUSA!! MOOOOIIII!!! \<grazie PiERre per le buone maniere che ci insegni\>)
+ * 
+ * Da aggiungere: la cigliegina sulla torta sarebbe l'ultima linea, ovvero
+ * quella che indica *dove* dovrebbe (e dico dovrebbe) andare a finire la 
+ * carica principale alla fine di tutti questi "sbattuliciamenti" dovuti 
+ * all'influenza delle  altre cariche (voglio ricordare, al fine di 
+ * mantenere il ragionamento  lucido a un ipotetico me del futuro ed ad altri 
+ * eventuali lettori di questo mio capriccio di codice, che il fine di questo 
+ * simulatore è vedere che  tipo di forza subisce una carica puntiforme per 
+ * effetto di altre cariche puntiformi).
+ *
+ *  Last edit: 2008/05/12 @ 9:34 p.m.
+ * 
+ * Edit ( 2008/06/28 @ 20:48 ) e porco de dio, l'ultima freccia è un casino.
+ * Come posso fare ?
+ * Partiamo dal concetto che il merdoso e MASTODONTICO frammentuzzo di codice
+ * che ora come ora disegna le freccettine fa parte, di fatto, di 
+ * paint(Grapghics) e che l'ho messa in un altra funzione *solo* per avere
+ * ordine tra le varie fasi dello svolgimendo del programma.
+ * 
+ * Devo risolvere sto problema, eeek!
+ * 
+ * 
+ * Annuncio di oggi (vedi data):
+ *      AAA cercasi nuova migliore amica, ma di razza
+ *          perchè bastarda l'ho già avuta.
+ *      Magari qualche giovane programmatrice legge questo codice
+ *      e mi contatta (santoro@autistici.org).
+ *  
+ * Last edit: 2008/11/2 @ 01:29 p.m. :
+ * Ok con le amiche sto a posto, ho risolto, no problem.
+ * Cmq devo ancora mettere la freccetta finale. E non mi colla.
+ * 
+ * Last edit: 2009/03/14 @ 22:08 p.m :
+ * Dato che ho cominciato a tener traccia dei cambiamenti con git, per fare un
+ * po' di prove con i branch ho creato un branch, 'risultante', in cui 
+ * proverò ad aggiungere quella freccetta della minchia che aspetta di esssere
+ * aggiunta da circa un anno.
+ * Edit del 2009/03/14 alle 22:14: Toh, non mi ricordo una mazza ».«
+ * 
+ */
+public class ColoumbPanel extends JPanel implements Runnable, MouseListener {
 
-public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
-
-    /*
-     * Dunque, cominciamo con i commenti:
-     * La classe ColoumbPanel è la classe principale, ed è quella che svolge
-     * la maggior parte del lavoro: si occupa di mantenere all'interno un 
-     * array dinamico in cui salvare le cariche (istanze della classe Carica)
-     * 
-     * Si occupa anche di disegnare sul pannello tutte le cariche sotto forma
-     * di pallini, di disegnare alcune linee che indichino la consistenza della
-     * forza di Couloumb tra le due cariche e di generare le freccette (ok, non 
-     * vi fate ingannare: le freccette sembrano una cazzata da programmare, ma 
-     * hanno preso il loro tempo OK?? TE STA DICU DE SINE!! MOOOOOI M'HAI CHIEDERE
-     * SCUSA!! MOOOOIIII!!! <grazie PiERre per le buone maniere che ci insegni>)
-     * 
-     * Da aggiungere: la cigliegina sulla torta sarebbe l'ultima linea, ovvero
-     * quella che indica *dove* dovrebbe (e dico dovrebbe) andare a finire la 
-     * carica principale alla fine di tutti questi "sbattuliciamenti" dovuti 
-     * all'influenza delle  altre cariche (voglio ricordare, al fine di 
-     * mantenere il ragionamento  lucido a un ipotetico me del futuro ed ad altri 
-     * eventuali lettori di questo mio capriccio di codice, che il fine di questo 
-     * simulatore è vedere che  tipo di forza subisce una carica puntiforme per 
-     * effetto di altre cariche puntiformi).
-     *
-     *  Last edit: 2008/05/12 @ 9:34 p.m.
-     * 
-     * Edit ( 2008/06/28 @ 20:48 ) e porco de dio, l'ultima freccia è un casino.
-     * Come posso fare ?
-     * Partiamo dal concetto che il merdoso e MASTODONTICO frammentuzzo di codice
-     * che ora come ora disegna le freccettine fa parte, di fatto, di 
-     * paint(Grapghics) e che l'ho messa in un altra funzione *solo* per avere
-     * ordine tra le varie fasi dello svolgimendo del programma.
-     * 
-     * Devo risolvere sto problema, eeek!
-     * 
-     * 
-     * Annuncio di oggi (vedi data):
-     *      AAA cercasi nuova migliore amica, ma di razza
-     *          perchè bastarda l'ho già avuta.
-     *      Magari qualche giovane programmatrice legge questo codice
-     *      e mi contatta (santoro@autistici.org).
-     *  
-     * Last edit: 2008/11/2 @ 01:29 p.m. :
-     * Ok con le amiche sto a posto, ho risolto, no problem.
-     * Cmq devo ancora mettere la freccetta finale. E non mi colla.
-     * 
-     * 
-     */
+    
     private Graphics G ;
     private Operazioni OPZ ;
     private Carica PRINCIPALE = null ; 
     
-    // deve generare le forze si o no? questa variabile dovrebbe assolvere il compito di 
-    // rispondere a questa domanda ; a dire la verità ora come ora non credo che venga
-    // effettivamente usata.
+    //! deve generare le forze si o no? questa variabile dovrebbe assolvere il compito di 
+    //! rispondere a questa domanda ; a dire la verità ora come ora non credo che venga
+    //! effettivamente usata.
     private boolean genForze  = false ; 
     
     
@@ -81,6 +91,9 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
     public void paint (Graphics g ) {
         int i = 0;
         while (i < this.lista.size() ) {
+	    /*
+	     * Piazziamo una per una tutte le cariche.
+	     */
             g.setColor(Color.GRAY) ;
             g.fillOval( lista.get(i).x , lista.get(i).y, 15, 15);
             g.setColor(Color.BLACK) ;
@@ -112,20 +125,19 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
         }
     }
     public void enableForze() {
-        // questo metodo si occupa di attivare/disattivare la visualizzazione delle forze
-	// edit: ma lo fa davvero?? :-\ *
+        /// questo metodo si occupa di attivare/disattivare la visualizzazione delle forze
+	/// edit: ma lo fa davvero?? :-\ *
         this.genForze = (!(this.genForze)) ;
     }
     
+    /** Perchè?
+     * Per mantenere concettualmente differenziate le varie parti del 
+     * Thread/programma/funzione, ho ``spezzettato'' la funzione paint(Graphics) in
+     * più sotto-funzioni, tipo questa.
+     * Divide et impera! Enjoy :-)
+     */
     private void calcola_forze( Graphics g ) {
-	/* Perchè?
-	 * Per mantenere concettualmente differenziate le varie parti del 
-	 * Thread/programma/funzione, ho ``spezzettato'' la funzione paint(Graphics) in
-	 * più sotto-funzioni, tipo questa.
-	 * Divide et impera! Enjoy :-)
-	 */
-
-        int i;
+	int i;
         /*
         Carica seconda = this.lista.get(++i);
         while (i <= this.lista.size()) {
@@ -142,7 +154,7 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
                     || 
                  ( this.PRINCIPALE.isNegative() && this.lista.get(i).isNegative() )
              ) {
-                /*
+                /**
                  * Bene, ho visto dopo diversi "studi" (*) che possiamo identificare 4 casi diversi, 
                  * in base alla posizione di una carica esploratrice rispetto ad una carica principale
                  * (la carica detta "generatrice di campo").

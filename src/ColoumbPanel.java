@@ -82,29 +82,29 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
         int i = 0;
         while (i < this.lista.size() ) {
             g.setColor(Color.GRAY) ;
-            g.fillOval( lista.get(i).x , lista.get(i).y, 15, 15);
+            g.fillOval( lista.get(i).getX() , lista.get(i).getY(), 15, 15);
             g.setColor(Color.BLACK) ;
-            g.drawString(String.valueOf(lista.get(i).carica) , lista.get(i).x-5 , lista.get(i).y-5) ;
+            g.drawString(String.valueOf(lista.get(i).getCarica()) , lista.get(i).getX()-5 , lista.get(i).getY()-5) ;
             g.drawString(
-                    "( " + String.valueOf(lista.get(i).x) + " ; " + String.valueOf(this.lista.get(i).y) + " )" ,
-                    this.lista.get(i).x-25,
-                    this.lista.get(i).y+25 
+		    "( " + String.valueOf(lista.get(i).getX()) + " ; " + String.valueOf(this.lista.get(i).getY()) + " )" ,
+                    this.lista.get(i).getX()-25,
+                    this.lista.get(i).getY()+25 
                     ) ;
             ++i ;   
         }
         
         if (this.PRINCIPALE != null) {
             g.setColor(Color.GRAY) ;
-            g.fillOval(this.PRINCIPALE.x, this.PRINCIPALE.y, 16, 16) ;
+            g.fillOval(this.PRINCIPALE.getX(), this.PRINCIPALE.getY(), 16, 16) ;
             g.setColor(Color.DARK_GRAY);
-            g.fillOval(this.PRINCIPALE.x+3, this.PRINCIPALE.y+3, 10, 10) ;
+            g.fillOval(this.PRINCIPALE.getX()+3, this.PRINCIPALE.getY()+3, 10, 10) ;
             g.setColor(Color.BLACK); 
-            g.drawString( String.valueOf(this.PRINCIPALE.carica) , this.PRINCIPALE.x-6 , this.PRINCIPALE.y-6) ;
+            g.drawString( String.valueOf(this.PRINCIPALE.getCarica()) , this.PRINCIPALE.getX()-6 , this.PRINCIPALE.getY()-6) ;
             g.drawString(
-                    "( " + String.valueOf(this.PRINCIPALE.x) + " ; " + String.valueOf(this.PRINCIPALE.y) + " )" ,
-                    this.PRINCIPALE.x-25,
-                    this.PRINCIPALE.y+25 
-                    ) ;
+		 "( " + String.valueOf(this.PRINCIPALE.getX()) + " ; " + String.valueOf(this.PRINCIPALE.getY()) + " )" ,
+		 this.PRINCIPALE.getX()-25,
+		 this.PRINCIPALE.getY()+25 
+		 ) ;
         }
         
         if (this.genForze) {
@@ -160,149 +160,149 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
                  *  (*) <---- Diciamo anche "seghe mentali sulla tastiera"
                  */
                 
-                if (this.lista.get(i).x < this.PRINCIPALE.x && this.lista.get(i).y < this.PRINCIPALE.y) {
+                if (this.lista.get(i).getX() < this.PRINCIPALE.getX() && this.lista.get(i).getY() < this.PRINCIPALE.getY()) {
                     /*
                      * Caso 0 : la carica relativa è situata più a sinistra e più
                      * sotto rispetto alla carica principale.
                      */
                     g.drawLine(
-                            this.PRINCIPALE.x + 7, 
-                            this.PRINCIPALE.y + 7, 
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + 7, 
+                            this.PRINCIPALE.getY() + 7, 
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x + (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y + (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() + (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() + (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                     
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            (this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)) -7
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            (this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())) -7
                             );
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x) - 7,
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()) - 7,
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                             );
                 }
                 
-                else if (this.lista.get(i).x < this.PRINCIPALE.x && this.lista.get(i).y > this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() < this.PRINCIPALE.getX() && this.lista.get(i).getY() > this.PRINCIPALE.getY()) {
                     /*
                      * Caso 1 : la carica relativa è situata più sopra ma più a 
                      * sinistra rispetto alla carica principale.
                      */
                     g.drawLine(
-                            this.PRINCIPALE.x + 7, 
-                            this.PRINCIPALE.y + 7, 
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + 7, 
+                            this.PRINCIPALE.getY() + 7, 
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x + (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y + (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() + (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() + (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
 
                     
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            (this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)) + 7
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            (this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())) + 7
                     );
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x) - 7,
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()) - 7,
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
 
                 }
                 
-                else if (this.lista.get(i).x > this.PRINCIPALE.x && this.lista.get(i).y > this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() > this.PRINCIPALE.getX() && this.lista.get(i).getY() > this.PRINCIPALE.getY()) {
                     /*
                      * Caso 2 : la carica relativa è posta più inalto e più a destra
                      * rispetto alla carica principale .
                      */
                     g.drawLine(
-                            this.PRINCIPALE.x + 7, 
-                            this.PRINCIPALE.y + 7, 
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + 7, 
+                            this.PRINCIPALE.getY() + 7, 
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x + (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y + (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() + (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() + (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                             
 
                     
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            (this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)) +7
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            (this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())) +7
                             );
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x) + 7,
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()) + 7,
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                             );
 
                 }
                 
-                else if (this.lista.get(i).x > this.PRINCIPALE.x && this.lista.get(i).y < this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() > this.PRINCIPALE.getX() && this.lista.get(i).getY() < this.PRINCIPALE.getY()) {
                     /*  
                      * Caso 3 : la carica relativa è posta più in basso e più a 
                      * destra rispetto alla carica principale.
                      */
                     g.drawLine(
-                            this.PRINCIPALE.x + 7, 
-                            this.PRINCIPALE.y + 7, 
-                            this.PRINCIPALE.x - Math.abs(this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + 7, 
+                            this.PRINCIPALE.getY() + 7, 
+                            this.PRINCIPALE.getX() - Math.abs(this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x + (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y + (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() + (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() + (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
 
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            (this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)) -7
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            (this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())) -7
                     );
                     g.drawLine(
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x),
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y),
-                            this.PRINCIPALE.x + (this.PRINCIPALE.x - this.lista.get(i).x) + 7,
-                            this.PRINCIPALE.y + (this.PRINCIPALE.y - this.lista.get(i).y)
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()),
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY()),
+                            this.PRINCIPALE.getX() + (this.PRINCIPALE.getX() - this.lista.get(i).getX()) + 7,
+                            this.PRINCIPALE.getY() + (this.PRINCIPALE.getY() - this.lista.get(i).getY())
                     );
 
                 }
             }
             else {
-                g.drawLine(this.PRINCIPALE.x+8, this.PRINCIPALE.y+8 , this.lista.get(i).x+7, this.lista.get(i).y+7);
+                g.drawLine(this.PRINCIPALE.getX()+8, this.PRINCIPALE.getY()+8 , this.lista.get(i).getX()+7, this.lista.get(i).getY()+7);
                 /*
                  * Anche qui abbiamo le quattro possibilità di prima: dobbiamo quindi
                  * gestire quattro eveniente, quattro. IF.
@@ -310,106 +310,106 @@ public class ColoumbPanel extends JPanel implements Runnable, MouseListener{
                  * IF-fiamo, quindi.
                  */
                 
-             if (this.lista.get(i).x < this.PRINCIPALE.x && this.lista.get(i).y < this.PRINCIPALE.y) {
+             if (this.lista.get(i).getX() < this.PRINCIPALE.getX() && this.lista.get(i).getY() < this.PRINCIPALE.getY()) {
                     /*
                      * Caso 0 : la carica relativa è situata più a sinistra e più
                      * sotto rispetto alla carica principale.
                      */
                     
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x +14,
-                            this.lista.get(i).y +7
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX() +14,
+                            this.lista.get(i).getY() +7
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x - (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y - (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() - (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() - (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                     
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +14
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +14
                     );
                 }
                 
-                else if (this.lista.get(i).x < this.PRINCIPALE.x && this.lista.get(i).y > this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() < this.PRINCIPALE.getX() && this.lista.get(i).getY() > this.PRINCIPALE.getY()) {
                    
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x +14 ,
-                            this.lista.get(i).y +7
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX() +14 ,
+                            this.lista.get(i).getY() +7
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x - (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y - (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() - (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() - (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                     
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x +7,
-                            this.lista.get(i).y -5
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX() +7,
+                            this.lista.get(i).getY() -5
                     );
 
 
                 }
                 
-                else if (this.lista.get(i).x > this.PRINCIPALE.x && this.lista.get(i).y > this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() > this.PRINCIPALE.getX() && this.lista.get(i).getY() > this.PRINCIPALE.getY()) {
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x  -7,
-                            this.lista.get(i).y +7
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX()  -7,
+                            this.lista.get(i).getY() +7
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x - (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y - (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() - (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() - (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7 ,
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y - 7 
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7 ,
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() - 7 
                     );
                 }
                 
-                else if (this.lista.get(i).x > this.PRINCIPALE.x && this.lista.get(i).y < this.PRINCIPALE.y) {
+                else if (this.lista.get(i).getX() > this.PRINCIPALE.getX() && this.lista.get(i).getY() < this.PRINCIPALE.getY()) {
                     g.drawLine(
-                            this.lista.get(i).x +7,
-                            this.lista.get(i).y +7,
-                            this.lista.get(i).x +7,
-                            this.lista.get(i).y +14
+                            this.lista.get(i).getX() +7,
+                            this.lista.get(i).getY() +7,
+                            this.lista.get(i).getX() +7,
+                            this.lista.get(i).getY() +14
                     );
                     
                     g.setColor(Color.BLUE) ;
                     g.drawString(
                             String.valueOf(Tools.forzaCouloumb(PRINCIPALE, this.lista.get(i), this.OPZ.getKappa())) + " C" ,
-                            this.PRINCIPALE.x - (int)((this.PRINCIPALE.x - this.lista.get(i).x)/2) ,
-                            this.PRINCIPALE.y - (int)((this.PRINCIPALE.y - this.lista.get(i).y)/2)
+                            this.PRINCIPALE.getX() - (int)((this.PRINCIPALE.getX() - this.lista.get(i).getX())/2) ,
+                            this.PRINCIPALE.getY() - (int)((this.PRINCIPALE.getY() - this.lista.get(i).getY())/2)
                     ) ;
                     g.setColor(Color.RED) ;
                     
                     g.drawLine(
-                            this.lista.get(i).x +7 ,
-                            this.lista.get(i).y +7,
-                            this.lista.get(i).x -7 ,
-                            this.lista.get(i).y +7
+                            this.lista.get(i).getX() +7 ,
+                            this.lista.get(i).getY() +7,
+                            this.lista.get(i).getX() -7 ,
+                            this.lista.get(i).getY() +7
                     );
                 }
                

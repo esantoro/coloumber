@@ -13,9 +13,10 @@ public class Carica {
         this.y = y;
         this.carica = carica;
     }
-    public int x;
-    public int y;
-    public double carica;
+
+    private int x;
+    private int y;
+    private double carica;
     
     public boolean isPositive() {
         boolean rslt = true;

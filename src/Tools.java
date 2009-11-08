@@ -17,7 +17,7 @@ public class Tools {
                 Math.pow( (double)c2.y - (double)c1.y , 2)
         );
         
-        double forza = k *  ((c1.carica + c2.carica) / Math.pow(distanza, 2)) ;
+        double forza = k *  ((c1.getCarica() + c2.getCarica()) / Math.pow(distanza, 2)) ;
         
         if ( forza > 0 ) {
             rslt = c1 ;
@@ -40,7 +40,7 @@ public class Tools {
     
     public static double forzaCouloumb(Carica c1 , Carica c2 , double KAPPA) {
         double distance = Tools.getDistance(c1, c2) ;
-        double forza = ( KAPPA * ((c1.carica * c2.carica)/Math.pow(distance, 2)) ) ;
+        double forza = ( KAPPA * ((c1.getCarica() * c2.getCarica())/Math.pow(distance, 2)) ) ;
         return forza ;
     }
 }

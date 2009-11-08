@@ -14,7 +14,7 @@ public class Tools {
         double distanza = Math.sqrt( 
                 Math.pow( (double)c2.x - (double)c1.x, 2 )
                 +
-                Math.pow( (double)c2.y - (double)c1.y , 2)
+                Math.pow( (double)c2.getY() - (double)c1.getY() , 2)
         );
         
         double forza = k *  ((c1.getCarica() + c2.getCarica()) / Math.pow(distanza, 2)) ;
@@ -33,7 +33,7 @@ public class Tools {
         double distanza = Math.sqrt( 
                 Math.pow( (double)c2.x - (double)c1.x, 2 )
                 +
-                Math.pow( (double)c2.y - (double)c1.y , 2)
+                Math.pow( (double)c2.getY() - (double)c1.getY() , 2)
         );
         return distanza ;
     }
